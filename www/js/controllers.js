@@ -21,7 +21,15 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $cordovaContacts) {
+  $scope.getContact = function() {
+    $cordovaContacts.pickContact().then(function(result) {
+		console.log(result); }); 
+			}
+  $scope.getContacts = function() {
+	$cordovaContacts.find({multiple: true}).then(function(result) { 
+		console.log(result); });
+			} 
   $scope.settings = {
     enableFriends: true
   };
